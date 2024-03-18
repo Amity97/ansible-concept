@@ -1,0 +1,28 @@
+- name: Configure My PC
+  hosts: localhost
+  tasks:
+    - name: Install Ansible dependencies on macOS using Homebrew
+      command: brew install openssl libffi
+      when: ansible_os_family == 'Darwin'
+
+    - name: Install Ansible on macOS using Homebrew
+      environment:
+        PATH: "{{ ansible_env.PATH }}:/usr/local/bin" # Ensure Homebrew binaries are in PATH
+      command: brew install ansible
+      args:
+        creates: /usr/local/bin/ansible # Skip if Ansible is already installed
+      when: ansible_os_family == 'Darwin'
+
+    - name: Create Ansible project directory
+      ansible.builtin.file:
+        path: /Users/amityeruham/desktop/projects/ansible-conc/
+        state: directory
+
+    - name: Create Ansible inventory file
+      ansible.builtin.copy:
+        content: |
+          [localhost]
+          127.0.0.1 ansible_connection=local
+        dest: /Users/amityeruham/desktop/projects/ansible-conc/inventory.ini
+
+   
