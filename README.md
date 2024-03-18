@@ -34,4 +34,4 @@ This will run the Ansible playbook, which will install Ansible dependencies, Ans
 ## Additional Notes
 
 - Ensure that you have appropriate permissions to install software packages and create directories on your system.
-- Modify the playbook (`config.yml`) and inventory (`inventory.ini`) files as needed to suit your requirements.
+- Modify the playbook (`config.yml`) and inventory (`inventory.ini`) files as needed to suit your requirements (this is for macos etc).
